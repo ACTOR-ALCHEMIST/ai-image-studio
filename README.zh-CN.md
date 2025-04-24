@@ -1,5 +1,3 @@
-[中文说明 | Chinese README](./README.zh-CN.md)
-
 # AI Image Studio
 
 AI Image Studio 是一个基于 Next.js 13+、Supabase Auth 和 Stripe 支付的 AI 图片生成与管理平台，支持邮箱/Google 登录注册，安全高效，适合个人和团队使用。
