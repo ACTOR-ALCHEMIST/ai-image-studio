@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, ReactNode } from 'react';
-import { User } from '@/lib/db/schema';
+import { User } from '@supabase/supabase-js';
 
 type UserContextType = {
   userPromise: Promise<User | null>;

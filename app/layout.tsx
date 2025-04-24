@@ -1,12 +1,14 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Manrope } from 'next/font/google';
+import { AuthProvider } from '@/lib/auth-context';
 import { UserProvider } from '@/lib/auth';
-import { getUser } from '@/lib/db/queries';
+import Nav from '@/components/nav';
+import { supabase } from '@/lib/supabase';
 
 export const metadata: Metadata = {
-  title: 'Next.js SaaS Starter',
-  description: 'Get started quickly with Next.js, Postgres, and Stripe.',
+  title: 'Your App',
+  description: 'Your app description',
 };
 
 export const viewport: Viewport = {
@@ -20,7 +22,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let userPromise = getUser();
+  const userPromise = supabase.auth.getUser().then(({ data: { user } }) => user);
 
   return (
     <html
@@ -28,7 +30,14 @@ export default function RootLayout({
       className={`bg-white dark:bg-gray-950 text-black dark:text-white ${manrope.className}`}
     >
       <body className="min-h-[100dvh] bg-gray-50">
-        <UserProvider userPromise={userPromise}>{children}</UserProvider>
+        <AuthProvider>
+          <UserProvider userPromise={userPromise}>
+            <Nav />
+            <main className="container mx-auto px-4 py-8">
+              {children}
+            </main>
+          </UserProvider>
+        </AuthProvider>
       </body>
     </html>
   );
