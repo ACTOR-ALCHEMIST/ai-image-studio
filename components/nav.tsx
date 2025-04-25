@@ -12,8 +12,9 @@ export default function Nav() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-xl font-bold text-indigo-600">
-                Your App
+              <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900">
+                <span className="rounded-full bg-gray-900 text-white w-8 h-8 flex items-center justify-center">U</span>
+                <span className="hidden sm:inline">Unprofitable</span>
               </Link>
             </div>
           </div>
@@ -49,4 +50,4 @@ export default function Nav() {
       </div>
     </nav>
   );
-} 
+}
